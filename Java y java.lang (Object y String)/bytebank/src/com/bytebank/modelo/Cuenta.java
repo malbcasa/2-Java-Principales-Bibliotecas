@@ -1,6 +1,13 @@
 package com.bytebank.modelo;
 
-abstract class Cuenta {
+/**
+ * Este objeto se usa para instanciar objetos CuentaCorriente
+ * y CuentaAhorros
+ * @author Mauri
+ *
+ */
+
+public abstract class Cuenta {
 
     public double saldo;
     private int agencia = 1;
@@ -13,6 +20,11 @@ abstract class Cuenta {
 
     }
 
+    /**
+     * Constructor para inicializar el objeto Cuenta a partir da agencia y numero
+     * @param agencia
+     * @param numero
+     */
     public Cuenta( int agencia, int numero) {
         this.agencia = agencia;
         this.numero = numero;
@@ -23,6 +35,11 @@ abstract class Cuenta {
 
     public abstract void deposita(double valor);
 
+    /**
+     * valor necesita ser menor o igual al saldo
+     * @param valor
+     * @return
+     */
     public boolean saca(double valor) {
         if(this.saldo >= valor) {
             this.saldo -= valor;
