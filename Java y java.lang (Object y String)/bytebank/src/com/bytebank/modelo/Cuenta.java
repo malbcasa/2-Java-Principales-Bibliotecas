@@ -1,8 +1,8 @@
 package com.bytebank.modelo;
 
-public abstract class Cuenta {
+abstract class Cuenta {
 
-    protected double saldo;
+    public double saldo;
     private int agencia = 1;
     private int numero;
     private Cliente titular = new Cliente();
