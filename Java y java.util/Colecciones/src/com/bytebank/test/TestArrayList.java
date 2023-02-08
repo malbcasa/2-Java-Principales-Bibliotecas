@@ -1,6 +1,8 @@
 package com.bytebank.test;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
 
 import com.bytebank.modelo.Cliente;
 import com.bytebank.modelo.Cuenta;
@@ -9,7 +11,10 @@ import com.bytebank.modelo.CuentaCorriente;
 public class TestArrayList {
 
 	public static void main(String[] args) {
-		ArrayList<Cuenta> lista = new ArrayList<>();
+		//ArrayList<Cuenta> lista = new ArrayList<>();
+		List<Cuenta> lista = new ArrayList<>();
+		//List<Cuenta> lista = new Vector<>();
+		//Collection<Cuenta> lista = new ArrayList<>(); No compila, falta get()
 		Cuenta cc = new CuentaCorriente(11, 22);
 		Cuenta cc2 = new CuentaCorriente(13, 42);
 		Cuenta cc3 = new CuentaCorriente(11, 22);
