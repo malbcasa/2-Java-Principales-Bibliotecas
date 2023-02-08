@@ -12,6 +12,7 @@ public class TestArrayList {
 		ArrayList<Cuenta> lista = new ArrayList<>();
 		Cuenta cc = new CuentaCorriente(11, 22);
 		Cuenta cc2 = new CuentaCorriente(13, 42);
+		Cuenta cc3 = new CuentaCorriente(11, 22);
 		
 		lista.add(cc);
 		lista.add(cc2);
@@ -30,5 +31,9 @@ public class TestArrayList {
 			System.out.println(cuenta);
 		}
 		
+		boolean contiene = lista.contains(cc3);
+		System.out.println(contiene ? "Si, es igual (equals)" : "No");
+		
+	
 	}
 }
