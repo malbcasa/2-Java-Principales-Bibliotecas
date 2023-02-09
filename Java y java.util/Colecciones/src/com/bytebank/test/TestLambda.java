@@ -9,9 +9,9 @@ import com.bytebank.modelo.Cliente;
 import com.bytebank.modelo.Cuenta;
 import com.bytebank.modelo.CuentaCorriente;
 
-public class TestOrdenarLista {
+public class TestLambda {
 
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		
 		Cuenta cc1 = new CuentaCorriente(62,33);
 		Cliente clienteCC1 = new Cliente();
@@ -48,34 +48,30 @@ public class TestOrdenarLista {
 			System.out.println(cuenta);
 		}
 		
-		// Ordenar
-		//          Cualquier clase hija de Cuenta
-		// Comparator <? extend Cuenta> c
-		//Comparator<Cuenta> comparator = new OrdenadorPorNumeroCuenta();
-		//lista.sort(comparator);
-		//           Clase anónima
-		lista.sort(new Comparator<Cuenta>(){
-			@Override
-			public int compare(Cuenta o1, Cuenta o2) {
-				return Integer.compare(o1.getNumero(), o2.getNumero());
-			}			
-		});
+		// Usando Lambdas
+		lista.sort((Cuenta o1, Cuenta o2) ->
+			Integer.compare(o1.getNumero(), o2.getNumero())	
+		);
 		
 		System.out.println("Despues de ordenar");
 		for(Cuenta cuenta : lista) {
 			System.out.println(cuenta);
 		}
 		
-		Comparator<Cuenta> comparatorNombre = new OrdenadorPorNombreTitular(); // Implementación de Interfaz
-		lista.sort(comparatorNombre);
+		Collections.sort(lista, (c1,c2) -> 
+			 c1.getTitular().getNombre()
+					.compareTo(c2.getTitular().getNombre())
+		);
 		
 		
 		System.out.println("Despues de ordenar por nombre");
-		for(Cuenta cuenta : lista) {
-			System.out.println(cuenta);
-		}
+//		for(Cuenta cuenta : lista) {
+//			System.out.println(cuenta);
+//		}
 		
-		// Forma antigua
+		lista.forEach((cuenta) ->System.out.println(cuenta));
+		
+		
 		Collections.sort(lista, new OrdenadorPorNumeroCuenta());
 		System.out.println("Despues de ordenar con collections");
 		for(Cuenta cuenta : lista) {
@@ -87,37 +83,5 @@ public class TestOrdenarLista {
 		for(Cuenta cuenta : lista) {
 			System.out.println(cuenta);
 		}
-		
 	}
-}
-
-class OrdenadorPorNumeroCuenta implements Comparator<Cuenta>{
-
-	@Override
-	public int compare(Cuenta o1, Cuenta o2) {
-		/* Forma básica
-		if (o1.getNumero() == o2.getNumero()) {
-			return 0;
-		}else if(o1.getNumero() > o2.getNumero()) {
-			return 1;
-		}else {
-			return -1;
-		}*/
-		/* Forma intermedia
-		return o1.getNumero() - o2.getNumero();*/
-		//Forma Wrapper
-		return Integer.compare(o1.getNumero(), o2.getNumero());
-		
-	}
-	
-}
-
-class OrdenadorPorNombreTitular implements Comparator<Cuenta>{
-
-	@Override
-	public int compare(Cuenta o1, Cuenta o2) {
-		return o1.getTitular().getNombre().compareTo(
-				o2.getTitular().getNombre());
-	}
-	
 }
