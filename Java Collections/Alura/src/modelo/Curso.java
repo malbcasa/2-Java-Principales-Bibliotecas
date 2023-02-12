@@ -1,7 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,6 +12,7 @@ public class Curso { //implements Comparable<Curso>
 	private String nombre;
 	private int tiempo;
 	private List<Aula> aulaList = new LinkedList<>(); // new ArrayList<>()
+	private Collection<Alumno> alumnos = new HashSet<>();
 		
 	public Curso(String nombre, int tiempo) {
 		this.nombre = nombre;
@@ -41,6 +44,14 @@ public class Curso { //implements Comparable<Curso>
 	
 	public void addAula(Aula clase) {
 		this.aulaList.add(clase);
+	}
+	
+	public void addAlumno(Alumno alumno) {this.alumnos.add(alumno);}
+	
+	public boolean verificaAlumno(Alumno alumno) {return this.alumnos.contains(alumno);}
+	
+	public Collection<Alumno> getAlumnos() {
+		return alumnos;
 	}
 	
 	@Override
